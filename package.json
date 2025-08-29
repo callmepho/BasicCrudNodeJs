@@ -1,0 +1,31 @@
+{
+  "name": "basic_crud_nodejs",
+  "version": "1.0.0",
+  "description": "Learning NodeJs backend with Express and GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callmepho/BasicCrudNodeJs.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "Express",
+    "GraphQL",
+    "Crud"
+  ],
+  "author": "Minh Anthony Tat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callmepho/BasicCrudNodeJs/issues"
+  },
+  "homepage": "https://github.com/callmepho/BasicCrudNodeJs#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "graphql": "^16.11.0",
+    "graphql-http": "^1.22.4"
+  },
+  "type": "module"
+}
