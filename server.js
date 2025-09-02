@@ -1,33 +1,30 @@
 import express from "express";
+import mongoose from "mongoose";
+import schema from "./graphql/schema.js";
+import resolvers from "./graphql/resolvers.js";
 import { createHandler } from "graphql-http/lib/use/express";
-import { buildSchema } from "graphql";
-
-// Construct a schema using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-// The root provides a resolver function for each API endpoint
-const root = {
-  hello() {
-    return "Hello world!";
-  },
-};
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
-// Create and use the GraphQL handler
-app.all(
+const uri = process.env.MONGO_URI;
+
+mongoose
+  .connect(uri)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Database connection error:", err));
+
+app.use(
   "/graphql",
   createHandler({
     schema,
-    rootValue: root,
+    rootValue: resolvers,
+    graphiql: true,
   })
 );
 
 // Start the server at port 4000
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Running a GraphQL API server at http://localhost:4000/graphql");
 });
